@@ -74,3 +74,13 @@ n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(
     tabs.forEach(function(t){t.classList.toggle('on',t.getAttribute('href')==='#'+cur.id)})}
   window.addEventListener('scroll',spy,{passive:true});spy();
 })();
+
+// Visor de fotos
+(function(){
+  var links=[].slice.call(document.querySelectorAll('[data-lb]'));if(!links.length)return;
+  var box=document.createElement('div');box.className='lb';box.setAttribute('role','dialog');box.setAttribute('aria-label','Foto ampliada');box.innerHTML='<img alt=""><p></p>';document.body.appendChild(box);
+  var img=box.querySelector('img'),cap=box.querySelector('p');
+  function close(){box.classList.remove('on')}
+  links.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();img.src=a.getAttribute('href');img.alt=a.querySelector('img').alt;cap.textContent=a.getAttribute('data-cap')||'';box.classList.add('on')})});
+  box.addEventListener('click',close);document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
+})();
