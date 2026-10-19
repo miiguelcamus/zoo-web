@@ -1,0 +1,10 @@
+# Sin paso de compilación: Netlify publica la raíz del repositorio tal cual.
+[build]
+  publish = "."
+  command = ""
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    X-Content-Type-Options = "nosniff"
