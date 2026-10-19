@@ -60,3 +60,17 @@ n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(
     var v=['BEGIN:VCARD','VERSION:3.0','FN:Zoo Hamburguesería','ORG:Zoo','TEL;TYPE=WORK,VOICE:+34942401961','ADR;TYPE=WORK:;;Calle Pedro del Camino Mijarazo\\, 40;Ajo;Cantabria;39170;España','END:VCARD'].join('\r\n');
     var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([v],{type:'text/vcard'}));a.download='zoo-ajo.vcf';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href)},1500)})});
 })();
+
+// Carta: buscador y pestaña activa; enlaces a redes aún sin dirección
+(function(){
+  document.querySelectorAll('[data-social]').forEach(function(a){a.addEventListener('click',function(e){if(a.getAttribute('href')==='#')e.preventDefault()})});
+  var cats=[].slice.call(document.querySelectorAll('[data-cat]'));if(!cats.length)return;
+  var tabs=[].slice.call(document.querySelectorAll('[data-tab]')),input=document.querySelector('[data-menu-filter]'),empty=document.querySelector('[data-menu-empty]');
+  function norm(s){return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')}
+  if(input)input.addEventListener('input',function(){var q=norm(input.value.trim()),any=false;
+    cats.forEach(function(c){var shown=0;c.querySelectorAll('.dish').forEach(function(d){var ok=!q||norm(d.textContent).indexOf(q)>-1||norm(c.querySelector('h2').textContent).indexOf(q)>-1;d.style.display=ok?'':'none';if(ok)shown++});c.style.display=shown?'':'none';if(shown)any=true});
+    if(empty)empty.classList.toggle('show',!any)});
+  function spy(){var y=window.scrollY+180,cur=cats[0];cats.forEach(function(c){if(c.style.display!=='none'&&c.offsetTop<=y)cur=c});
+    tabs.forEach(function(t){t.classList.toggle('on',t.getAttribute('href')==='#'+cur.id)})}
+  window.addEventListener('scroll',spy,{passive:true});spy();
+})();
