@@ -124,3 +124,27 @@ main{overflow-x:clip}html{overflow-x:clip}
 @media(max-width:900px){.p-word{font-size:clamp(40px,11vw,64px)}}
 .tl-scale,.tl-row{grid-template-columns:110px 1fr 230px}.tl-txt{white-space:nowrap}@media(max-width:900px){.tl-scale,.tl-row{grid-template-columns:78px 1fr}.tl-txt{white-space:normal}}
 .map-frame{height:640px}@media(max-width:900px){.map-frame{height:380px}}
+
+/* Contacto: mapa en su sitio, junto a la tarjeta */
+.contact-sec{padding:60px 0 84px;background:var(--cream)}
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:44px;align-items:stretch}
+.contact-grid .info-card{width:100%}
+.map-box{border:4px solid var(--navy);border-radius:28px;overflow:hidden;box-shadow:10px 10px 0 var(--green);background:var(--sky2);min-height:520px}
+.map-box iframe{display:block;width:100%;height:100%;min-height:520px;border:0}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:36px}.map-box,.map-box iframe{min-height:360px}}
+/* v3: hamburguesa 3D, mapa como siempre, sin huellas */
+.trail{display:none!important}
+.hero-art{width:min(500px,100%)}
+.b3d{display:block;width:100%;aspect-ratio:1/1;touch-action:pan-y;cursor:grab;position:relative;z-index:1;opacity:0;transition:opacity .6s}
+.hero-art.has3d .b3d{opacity:1}
+.b3d-fallback{position:absolute;inset:8% 6% 6%;display:grid;place-items:center}
+.hero-art.has3d .b3d-fallback{display:none}
+.b3d-fallback .burger{width:100%}
+.b3d-hint{position:absolute;left:0;right:0;bottom:-6px;margin:0;text-align:center;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);opacity:.7;pointer-events:none}
+.hero-art .badge{z-index:2}
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:stretch}
+.contact-grid .info-card{width:100%}
+.contact-grid .map-frame{height:auto;min-height:480px;border:4px solid var(--navy);border-radius:28px;box-shadow:8px 8px 0 var(--green);overflow:hidden}
+.contact-grid .map-frame iframe{min-height:480px}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:34px}.contact-grid .map-frame,.contact-grid .map-frame iframe{min-height:340px}}
+.b3d{-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 13%);mask-image:linear-gradient(to bottom,transparent 0,#000 13%)}

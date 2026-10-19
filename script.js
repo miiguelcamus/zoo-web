@@ -55,14 +55,4 @@ n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(
   // Paneles: tocar en el móvil
   document.querySelectorAll('.panel').forEach(function(p){p.addEventListener('touchstart',function(){document.querySelectorAll('.panel').forEach(function(q){q.classList.toggle('on',q===p)})},{passive:true})});
 
-  // Huellas que siguen al ratón (solo escritorio)
-  if(!reduce&&window.matchMedia('(hover:hover) and (pointer:fine)').matches){
-    var last=0,lx=0,ly=0,side=1,NS='http://www.w3.org/2000/svg';
-    window.addEventListener('mousemove',function(e){var d=Math.hypot(e.clientX-lx,e.clientY-ly);if(d<70)return;
-      var a=Math.atan2(e.clientY-ly,e.clientX-lx)*180/Math.PI+90;lx=e.clientX;ly=e.clientY;side=-side;
-      var s=document.createElementNS(NS,'svg');s.setAttribute('viewBox','0 0 64 64');s.setAttribute('class','trail');
-      s.style.left=(e.clientX+side*10-11)+'px';s.style.top=(e.clientY-11)+'px';s.style.setProperty('--r',a+'deg');s.style.transform='rotate('+a+'deg)';
-      s.innerHTML='<ellipse cx="14" cy="28" rx="7" ry="10" transform="rotate(-20 14 28)"/><ellipse cx="26" cy="15" rx="7" ry="10" transform="rotate(-6 26 15)"/><ellipse cx="40" cy="15" rx="7" ry="10" transform="rotate(6 40 15)"/><ellipse cx="52" cy="28" rx="7" ry="10" transform="rotate(20 52 28)"/><path d="M32 30c-10 0-19 9-19 18 0 7 6 10 12 9 3-.5 5-1.5 7-1.5s4 1 7 1.5c6 1 12-2 12-9 0-9-9-18-19-18z"/>';
-      document.body.appendChild(s);setTimeout(function(){s.remove()},1400)});
-  }
 })();
