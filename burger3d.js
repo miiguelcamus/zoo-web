@@ -299,14 +299,14 @@ function start() {
   }
 
   // ---------- Luces ----------
-  const hemi = new THREE.HemisphereLight(0xcdeaf6, 0xe9cfa6, 0.4); scene.add(hemi);
+  const hemi = new THREE.HemisphereLight(0xffe6c4, 0x2a1c10, 0.35); scene.add(hemi);
   const key = new THREE.DirectionalLight(0xffe9cf, 2.5);
   key.position.set(3, 5, 4); key.castShadow = true;
   key.shadow.mapSize.set(2048, 2048);
   Object.assign(key.shadow.camera, { left: -3.2, right: 3.2, top: 3.2, bottom: -3.2, near: 0.5, far: 16 });
   key.shadow.bias = -0.0004; key.shadow.normalBias = 0.025; key.shadow.radius = 5;
   scene.add(key); scene.add(key.target); key.target.position.copy(target);
-  const rim = new THREE.DirectionalLight(0x9fd3ff, 1.5); rim.position.set(-4, 3, -3.5); scene.add(rim);
+  const rim = new THREE.DirectionalLight(0xffa35c, 2.4); rim.position.set(-4, 3, -3.5); scene.add(rim);
   const glint = new THREE.PointLight(0xffd9a0, 9, 9, 2); scene.add(glint);
 
   // ---------- Interacción ----------
